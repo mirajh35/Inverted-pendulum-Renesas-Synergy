@@ -662,6 +662,10 @@
       <description>External IRQ: Provides=[External IRQ]</description>
       <originalPack>Renesas.Synergy.2.6.1.pack</originalPack>
     </component>
+    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="tx" variant="" vendor="Renesas" version="2.6.1">
+      <description>Express Logic ThreadX: Provides=[ThreadX]</description>
+      <originalPack>Renesas.Synergy.2.6.1.pack</originalPack>
+    </component>
   </synergyComponentSelection>
   <synergyIcuConfiguration/>
   <synergyMessagingConfiguration/>
@@ -678,27 +682,27 @@
     <module id="module.driver.fmi_on_fmi.0">
       <property id="module.driver.fmi.name" value="g_fmi"/>
     </module>
-    <module id="module.driver.external_irq_on_icu.1843020851">
+    <module id="module.driver.external_irq_on_icu.1617945617">
       <property id="module.driver.external_irq.name" value="g_external_irq0"/>
       <property id="module.driver.external_irq.channel" value="0"/>
       <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_rising"/>
-      <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.true"/>
+      <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.false"/>
       <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
       <property id="module.driver.external_irq.interrupt_enable" value="module.driver.external_irq.interrupt_enable.true"/>
       <property id="module.driver.external_irq.p_callback" value="interrupt_pos_irc"/>
       <property id="module.driver.external_irq.irq_ipl" value="board.icu.common.irq.priority1"/>
     </module>
-    <module id="module.driver.external_irq_on_icu.1940973626">
+    <module id="module.driver.external_irq_on_icu.747923426">
       <property id="module.driver.external_irq.name" value="g_external_irq1"/>
       <property id="module.driver.external_irq.channel" value="1"/>
       <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_rising"/>
-      <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.true"/>
+      <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.false"/>
       <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
       <property id="module.driver.external_irq.interrupt_enable" value="module.driver.external_irq.interrupt_enable.true"/>
       <property id="module.driver.external_irq.p_callback" value="interrupt_pen_irc"/>
       <property id="module.driver.external_irq.irq_ipl" value="board.icu.common.irq.priority1"/>
     </module>
-    <module id="module.driver.timer_on_gpt.1021823157">
+    <module id="module.driver.timer_on_gpt.1876305756">
       <property id="module.driver.timer.name" value="g_timer0"/>
       <property id="module.driver.timer.channel" value="7"/>
       <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_pwm"/>
@@ -715,7 +719,7 @@
       <property id="module.driver.timer.p_callback" value="NULL"/>
       <property id="module.driver.timer.irq_ipl" value="board.icu.common.irq.disabled"/>
     </module>
-    <module id="module.driver.timer_on_gpt.1518083974">
+    <module id="module.driver.timer_on_gpt.413114156">
       <property id="module.driver.timer.name" value="g_timer1"/>
       <property id="module.driver.timer.channel" value="0"/>
       <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_periodic"/>
@@ -737,10 +741,18 @@
       <stack module="module.driver.cgc_on_cgc.0"/>
       <stack module="module.driver.elc_on_elc.0"/>
       <stack module="module.driver.fmi_on_fmi.0"/>
-      <stack module="module.driver.external_irq_on_icu.1843020851"/>
-      <stack module="module.driver.external_irq_on_icu.1940973626"/>
-      <stack module="module.driver.timer_on_gpt.1021823157"/>
-      <stack module="module.driver.timer_on_gpt.1518083974"/>
+    </context>
+    <context id="rtos.threadx.thread.1353732052">
+      <property id="_symbol" value="fuzzy_thread"/>
+      <property id="rtos.threadx.thread.name" value="Fuzzy Thread"/>
+      <property id="rtos.threadx.thread.stack" value="1024"/>
+      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
+      <property id="rtos.threadx.thread.timeslice" value="1"/>
+      <stack module="module.driver.external_irq_on_icu.1617945617"/>
+      <stack module="module.driver.external_irq_on_icu.747923426"/>
+      <stack module="module.driver.timer_on_gpt.1876305756"/>
+      <stack module="module.driver.timer_on_gpt.413114156"/>
     </context>
     <config id="config.driver.cgc">
       <property id="config.driver.cgc.param_checking_enable" value="config.driver.cgc.param_checking_enable.bsp"/>
@@ -753,6 +765,7 @@
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
     </config>
+    <config id="config.threadx.thread"/>
     <config id="config.driver.gpt">
       <property id="config.driver.gpt.param_checking_enable" value="config.driver.gpt.param_checking_enable.bsp"/>
     </config>

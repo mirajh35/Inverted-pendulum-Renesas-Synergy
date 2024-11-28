@@ -456,11 +456,19 @@ Synergy Configuration
     Instance "g_fmi FMI Driver on r_fmi"
       Name: g_fmi
       
+  Thread "Fuzzy Thread"
+    Symbol: fuzzy_thread
+    Name: Fuzzy Thread
+    Stack size (bytes): 1024
+    Priority: 1
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
     Instance "g_external_irq0 External IRQ Driver on r_icu"
       Name: g_external_irq0
       Channel: 0
       Trigger: Rising
-      Digital Filtering: Enabled
+      Digital Filtering: Disabled
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
       Interrupt enabled after initialization: True
       Callback: interrupt_pos_irc
@@ -470,7 +478,7 @@ Synergy Configuration
       Name: g_external_irq1
       Channel: 1
       Trigger: Rising
-      Digital Filtering: Enabled
+      Digital Filtering: Disabled
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
       Interrupt enabled after initialization: True
       Callback: interrupt_pen_irc
